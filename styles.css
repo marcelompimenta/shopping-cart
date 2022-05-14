@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: auto;
+}
+
+h1 {
+    font-size: 1rem;
+}
+
+img {
+    width: 100px;
+}
+
+span {
+    font-size: 1.5rem;
+}
+
+.trufas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem auto;
+    background-color: rgb(211, 211, 211);
+    padding: 1.5rem;
+
+    width: 25rem;
+    background-color: aqua;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+}
