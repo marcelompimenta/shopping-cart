@@ -11,10 +11,10 @@
 
 [x]- Listar os produtos provenientes da API.
 [x]- Os produtos devem ter imagem, nome e preço.
-[ ]- Exibir ao fim da lista o valor total de todos os produtos.
-[ ]- Exibir o texto de frete grátis dependendo do valor do carrinho.
-[ ]- O texto de frete grátis deverá aparecer apenas se o valor for acima de **R$ 10,00.**
-[ ]- Seguir o layout.
-[ ]- Usar Flex-Box CSS.
-[ ]- Você poderá usar Vanilla JS, React, Vue ou outro framework. Sinta-se a vontade para usar a ferramenta que preferir.
+[X]- Exibir ao fim da lista o valor total de todos os produtos.
+[X]- Exibir o texto de frete grátis dependendo do valor do carrinho.
+[X]- O texto de frete grátis deverá aparecer apenas se o valor for acima de **R$ 10,00.**
+[X]- Seguir o layout.
+[X]- Usar Flex-Box CSS.
+[X]- Você poderá usar Vanilla JS, React, Vue ou outro framework. Sinta-se a vontade para usar a ferramenta que preferir.
 [ ]- Enviar o link do teste no github.

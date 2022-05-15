@@ -7,61 +7,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="./styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
 <body>
+    <header>
+        <h1>Chocolate Amor</h1>
+        <span class="material-icons close">
+            shopping_cart
+            <div id="amount" class="close">
+                <span id="amountTotal"></span>
+            </div>
+            <div id="container-pop-up">
+                <span id="pop-up">Nenhum item no carrinho!</span>
+            </div>
+        </span>
+        <div>
+            <button class="buttons-action keep-buying">Continuar comprando</button>
+        </div>
+    </header>
     <main>
-
+        <!--  here the <divs> containing the objects will be inserted. -->
     </main>
     <section>
         <div id="purchase">
             <div id="title-cart">
-                <h4>
-                    Meu Carrinho
-                </h4>
+                <h4>Meu Carrinho</h4>
             </div>
             <div id="uls-list">
                 <ul>
-                    <li>
-                        <div class=" purchase-truffles">
-                            <div class=" purchase-image">
-                                <img class="purchase-image-link"
-                                    src="http://codeby.vteximg.com.br/arquivos/ids/159959-800-1029/truffon-meio-amargo.png?v=636930938547630000"
-                                    alt="">
-                            </div>
-                            <div class="purchase-info">
-                                <div>
-                                    <h1 class="purchase-prod-names">Trufa Morango</h1>
-                                </div>
-                                <div class="purchase-cod">
-                                    <span>Cód. 123456</span>
-                                </div>
-                                <div>
-                                    <span class="purchase-price">R$ 1,11</span>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    <!-- here will be entered the container truffles -->
                 </ul>
             </div>
             <div id="price-total">
-                <div>
-                    <span>Total</span>
-                </div>
-                <div>
-                    R$ 10,90
-                </div>
-                <div id="free-shipping">
-                    <span>Parabéns, sua compra tem frete grátis!</span>
-                </div>
+                <!-- here will be entered the total price information and free shipping message. -->
+                <div id="shipping"></div>
             </div>
             <div id="button-purchase">
                 <button class="buttons-action add-to-cart" id="finalize-purchase">Finalizar Compra</button>
             </div>
         </div>
     </section>
-    <button id="calculate">calcular</button>
     <script src="./app.js" type="module"></script>
 </body>
 
