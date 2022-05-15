@@ -15,18 +15,20 @@ function createTemplate(item) {
     const { name, imageUrl, price, uniqueId } = item
     const priceTreat = treatPrices(price)
     return `
-       <div class="trufas" id="${uniqueId}">
-            <div>   
-                <h1>${name}</h1>
-            </div>
-            <div>
+       <div class="truffles" id="${uniqueId}">
+            <div class="imagetruffles">
                 <img src="${imageUrl}" alt="">
             </div>
-            <div>
-                <span>${priceTreat}</span>
-            </div>
-            <div>
-                <button>ADICIONAR</button>
+            <div class="information">
+                <div>
+                    <h1 class="name-products">${name}</h1>
+                </div>
+                <div>
+                    <span class="price">${priceTreat}</span>
+                </div>
+                <div class="buttons-add-to-cart">
+                    <button class="buttons-action add-to-cart finalize-purchase">Adicionar ao carrinho</button>
+                </div>
             </div>
        </div>
     `
@@ -35,29 +37,27 @@ function createTemplate(item) {
 window.onload = () => allItems.map(item =>
     main.innerHTML += createTemplate(item))
 
-const searchUniqueId = id => allItems.filter(UID =>
-    UID.uniqueId === id
-        ? productsSelecteds.unshift(UID)
-        : ''
-)
+const searchUniqueId = id => allItems.filter(uniqueId =>
+    uniqueId.uniqueId === id
+        ? productsSelecteds.push(uniqueId) : '')
+
+
 const getElementReference = element => {
-
-    const elementClicked = element
-    const getParentNode = elementClicked.parentNode.parentNode
+    const getParentNode = element.parentNode.parentNode.parentNode
+    const getReferenceTarget = element.tagName === 'BUTTON'
     const getId = getParentNode.getAttribute('id')
-    const getReferenceTarget = elementClicked.tagName === 'BUTTON'
-
     getReferenceTarget ? searchUniqueId(getId) : ''
 }
 
 main.addEventListener('click', ({ target }) => getElementReference(target))
+
 calculate.onclick = () => calculatePrice(productsSelecteds)
 
 function calculatePrice(listCartProducts) {
 
     const prices = listCartProducts.map(price => price.price)
     const finalPrices = prices.reduce((acc, item) => acc += item, 0)
-
+    console.log(finalPrices)
     checkFreeShipping(finalPrices)
     console.log(treatPrices(finalPrices))
 

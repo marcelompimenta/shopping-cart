@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
     <link rel="stylesheet" href="./styles.css">
+
 </head>
 
 <body>
@@ -14,7 +15,51 @@
 
     </main>
     <section>
-
+        <div id="purchase">
+            <div id="title-cart">
+                <h4>
+                    Meu Carrinho
+                </h4>
+            </div>
+            <div id="uls-list">
+                <ul>
+                    <li>
+                        <div class=" purchase-truffles">
+                            <div class=" purchase-image">
+                                <img class="purchase-image-link"
+                                    src="http://codeby.vteximg.com.br/arquivos/ids/159959-800-1029/truffon-meio-amargo.png?v=636930938547630000"
+                                    alt="">
+                            </div>
+                            <div class="purchase-info">
+                                <div>
+                                    <h1 class="purchase-prod-names">Trufa Morango</h1>
+                                </div>
+                                <div class="purchase-cod">
+                                    <span>Cód. 123456</span>
+                                </div>
+                                <div>
+                                    <span class="purchase-price">R$ 1,11</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div id="price-total">
+                <div>
+                    <span>Total</span>
+                </div>
+                <div>
+                    R$ 10,90
+                </div>
+                <div id="free-shipping">
+                    <span>Parabéns, sua compra tem frete grátis!</span>
+                </div>
+            </div>
+            <div id="button-purchase">
+                <button class="buttons-action add-to-cart" id="finalize-purchase">Finalizar Compra</button>
+            </div>
+        </div>
     </section>
     <button id="calculate">calcular</button>
     <script src="./app.js" type="module"></script>
