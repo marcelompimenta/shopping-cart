@@ -1,4 +1,4 @@
-export function createTemplate(item) {
+export default function createTemplate(item) {
 
     const { name, imageUrl, price, uniqueId } = item
     const priceTreat = treatPrices(price)
