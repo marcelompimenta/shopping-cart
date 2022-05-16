@@ -1,3 +1,6 @@
+import { priceTotalContainer, ulContainer } from "../app.js"
+import createTempleForCartShipping from "../createTemplateForCartShipping/createTemplateForCartShipping.js"
+
 function insertMessageFreeShipping() {
     setTimeout(() => {
         priceTotalContainer.innerHTML += `<div id="free-shipping">

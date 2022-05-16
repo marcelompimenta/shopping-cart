@@ -1,4 +1,4 @@
-import treatPrices from "../treatPrices/treatPrices"
+import treatPrices from "../treatPrices/treatPrices.js"
 
 export default function createTempleForCartShipping(priceProducts, item) {
     const { imageUrl, price, ean, name } = priceProducts
@@ -25,7 +25,7 @@ export default function createTempleForCartShipping(priceProducts, item) {
                 </div>
                 <div class="add-remove-products">
                     <div>
-                        <span class="material-icons recycle" onclick="removeItem(${item})">
+                        <span class="material-icons recycle" onclick="removeItems(${item})">
                             delete_forever
                         </span>
                     </div>

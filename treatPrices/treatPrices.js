@@ -16,7 +16,7 @@ const priceTreat = price =>
     Intl.NumberFormat('pt-BR',
         { style: 'currency', currency: 'BRL' }).format(price)
 
-export default treatPrices = prices => {
+const treatPrices = prices => {
 
     const priceToTreated = prices.toString().length
     const priceLengthThree = priceToTreated <= 3
@@ -35,3 +35,5 @@ export default treatPrices = prices => {
 
     return priceTreat(price)
 }
+
+export default treatPrices

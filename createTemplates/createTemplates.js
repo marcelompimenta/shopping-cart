@@ -1,4 +1,4 @@
-import treatPrices from "../treatPrices/treatPrices"
+import treatPrices from "../treatPrices/treatPrices.js"
 
 export default function createTemplate(item) {
 

@@ -1,3 +1,7 @@
+import { amount, productsSelecteds, ulContainer } from "../app.js"
+import { insertMessageFreeShipping } from "../insertFunctions/insertFunctions.js"
+import { popUpFlex, popUpNone, purchaseNone, mainFlex, amountFlex, amountNone } from "../styles/styles.js"
+
 function verifyItemIntoCart() {
     ulContainer.childElementCount > 0
         ? popUpNone()

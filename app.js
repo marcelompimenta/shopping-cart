@@ -1,6 +1,15 @@
 import { productsBelowTen } from "./apis/belowten.js"
 import { productsOverTen } from "./apis/overten.js"
 import createTemplate from "./createTemplates/createTemplates.js"
+import getElementReference from "./getElementReferences/getElementsReferences.js"
+
+import {
+    openCart,
+    continueBuying,
+    finalizeBuying,
+    finalizeBuyingButton,
+    removeItems,
+} from "./executorFunctions/executorFunctions.js"
 
 const productsBelow = productsBelowTen['items']
 const productsOver = productsOverTen['items']
@@ -31,7 +40,9 @@ export {
     styleAmount,
     popUp,
     popUpkeepingBuy,
-    modal
+    modal,
+    allItems,
+    main
 }
 
 window.onload = () => allItems.map(item =>

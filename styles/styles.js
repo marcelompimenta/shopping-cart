@@ -1,3 +1,12 @@
+import {
+    purchase,
+    styleAmount,
+    popUp,
+    popUpkeepingBuy,
+    modal,
+    main
+} from "../app.js"
+
 const styles = {
     styleAmountFlex: () => {
         styleAmount.style.display = "flex"
