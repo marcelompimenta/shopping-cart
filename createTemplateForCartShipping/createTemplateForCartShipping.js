@@ -1,3 +1,5 @@
+import treatPrices from "../treatPrices/treatPrices"
+
 export default function createTempleForCartShipping(priceProducts, item) {
     const { imageUrl, price, ean, name } = priceProducts
     const priceTreat = treatPrices(price)

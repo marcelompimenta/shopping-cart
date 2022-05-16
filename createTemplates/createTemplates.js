@@ -1,3 +1,5 @@
+import treatPrices from "../treatPrices/treatPrices"
+
 export default function createTemplate(item) {
 
     const { name, imageUrl, price, uniqueId } = item
