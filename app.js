@@ -1,19 +1,26 @@
 import { productsBelowTen } from "./belowten.js"
 import { productsOverTen } from "./overten.js"
 
+const productsBelow = productsBelowTen['items']
+const productsOver = productsOverTen['items']
+const allItems = [...productsBelow, ...productsOver]
+const productsSelecteds = []
+
 const main = document.querySelector('main')
-const cart = document.querySelector('.material-icons')
 const purchase = document.querySelector('#purchase')
-const finalizeButton = document.querySelector('#finalize-purchase')
 const priceTotalContainer = document.querySelector('#price-total')
 const ulContainer = document.querySelector('ul')
 const amount = document.querySelector('#amountTotal')
 const styleAmount = document.querySelector('#amount')
 const popUp = document.querySelector('#container-pop-up')
-const productsBelow = productsBelowTen['items']
-const productsOver = productsOverTen['items']
-const allItems = [...productsBelow, ...productsOver]
-const productsSelecteds = []
+const popUpkeepingBuy = document.querySelector('#keep-buying')
+const modal = document.querySelector('#modal')
+
+const cart = document.querySelector('.material-icons')
+const finalizeButton = document.querySelector('#finalize-purchase')
+const continueBuy = document.querySelector('.continue')
+const finalizeBuy = document.querySelector('.finalize')
+
 
 window.onload = () => allItems.map(item =>
     main.innerHTML += createTemplate(item))
@@ -46,13 +53,14 @@ function createTemplate(item) {
 }
 
 /*FUNÇÃO RESPONSAVEL POR CRIAR O TEMPLATE DOS PRODUTOS DENTRO DO CARRINHO */
-function createTempleForCartShipping(priceProducts) {
+
+function createTempleForCartShipping(priceProducts, item) {
     const { imageUrl, price, ean, name } = priceProducts
     const priceTreat = treatPrices(price)
 
     return `
         <li>
-            <div class=" purchase-truffles">
+            <div class="purchase-truffles">
                 <div class=" purchase-image">
                     <img class="purchase-image-link"
                         src="${imageUrl}"
@@ -67,6 +75,13 @@ function createTempleForCartShipping(priceProducts) {
                     </div>
                     <div>
                         <span class="purchase-price">${priceTreat}</span>
+                    </div>
+                </div>
+                <div class="add-remove-products">
+                    <div>
+                        <span class="material-icons recycle" onclick="removeItem(${item})">
+                            delete_forever
+                        </span>
                     </div>
                 </div>
             </div>
@@ -87,20 +102,16 @@ function insertIntoDomPrice(priceTotal) {
 }
 /* FUNÇÃO RESPONSAVEL POR GERAR O TEMPLATE DA MENSAGEM NO DOM */
 function insertMessageFreeShipping() {
-
     setTimeout(() => {
-
-        priceTotalContainer.insertAdjacentHTML('beforeEnd', `<div id="free-shipping">
+        priceTotalContainer.innerHTML += `<div id="free-shipping">
         <span>Parabéns, sua compra tem frete grátis!</span>
         </div>`
-        )
+    }, 10)
 
-    }, 200)
 }
 
-
-
 /* FUNÇÃO RESPONSAVEL POR INSERIR O PREÇO TOTAL NO CARRINHO */
+
 const insertIntoDomPriceTotal = totalPrice => {
     priceTotalContainer.innerHTML = ""
     priceTotalContainer.innerHTML += insertIntoDomPrice(totalPrice)
@@ -110,8 +121,8 @@ const insertIntoDomPriceTotal = totalPrice => {
 
 const insertIntoDomLis = listProducts => {
     ulContainer.innerHTML = ""
-    listProducts.forEach(item =>
-        ulContainer.innerHTML += createTempleForCartShipping(item))
+    listProducts.forEach((item, index) =>
+        ulContainer.innerHTML += createTempleForCartShipping(item, index))
 }
 
 const searchUniqueId = id => allItems.filter(uniqueId =>
@@ -141,6 +152,7 @@ function calculatePrice(listCartProducts) {
 }
 
 /* BLOCO DE FUNÇÕES QUE FAZEM O TRATAMENTO DOS VALORES */
+
 const priceStringfyFortreat = prices => prices.toString().split('').join()
 
 const priceFinalTreatedBelowTen = prices =>
@@ -185,7 +197,7 @@ const treatPrices = prices => {
 function checkFreeShipping(amount) {
     amount > 1000
         ? insertMessageFreeShipping()
-        : console.log('Que pena não possui frete')
+        : ""
 }
 
 /* OBJETO QUE CONTEM AS FUNÇÕES QUE MANIPULAM OS STYLE NECESSARIOS PARA APLICAÇÃO */
@@ -214,20 +226,36 @@ const styles = {
     },
     stylePopUpNone: () => {
         popUp.style.display = "none"
+    },
+    stylePopUpkeepingBuyFlex: () => {
+        popUpkeepingBuy.style.display = "flex"
+    },
+    stylePopUpkeepingBuyNone: () => {
+        popUpkeepingBuy.style.display = "none"
+    },
+    styleModalFlex: () => {
+        modal.style.display = "flex"
+    },
+    styleModalNone: () => {
+        modal.style.display = "none"
     }
 
 }
 
 /* INSTANCIAMENTO DAS FUNÇÕES QUE MANIPULAM OS ESTILOS */
 
+const popUpBuyFlex = styles['stylePopUpkeepingBuyFlex']
+const popUpBuyNone = styles['stylePopUpkeepingBuyNone']
 const purchaseFlex = styles['stylePurchaseFlex']
 const purchaseNone = styles['stylePurchaseNone']
-const popUpFlex = styles['stylePopUpFlex']
-const popUpNone = styles['stylePopUpNone']
-const mainFlex = styles['styleMainFlex']
-const mainNone = styles['styleMainNone']
 const amountFlex = styles['styleAmountFlex']
 const amountNone = styles['styleAmountNone']
+const popUpFlex = styles['stylePopUpFlex']
+const popUpNone = styles['stylePopUpNone']
+const modalFlex = styles['styleModalFlex']
+const modalNone = styles['styleModalNone']
+const mainFlex = styles['styleMainFlex']
+const mainNone = styles['styleMainNone']
 
 /* FUNÇÃO QUE VERIFICA SE O CARRINHO POSSUI ALGUM ITEM E MOSTRA O MODAL */
 
@@ -257,9 +285,22 @@ function verifyAmount() {
         : (amount.innerText = "", amountNone())
 }
 
+/* FUNÇÃO QUE REMOVE UM ITEM DO CARRINHO DE COMPRAS */
+
+function removeItems(item) {
+    productsSelecteds.splice(item, 1)
+    insertIntoDomLis(productsSelecteds)
+    insertIntoDomPriceTotal(calculatePrice(productsSelecteds))
+    verifyItemIntoCart()
+    verifyAmount()
+    console.log(productsSelecteds)
+}
+
+window.removeItem = item => removeItems(item)
+
 /* FUNÇÕES DE EVENTO E CLICK DA APLICAÇÃO */
 
-cart.onclick = () => {
+function openCart() {
     purchaseFlex()
     mainNone()
     insertIntoDomLis(productsSelecteds)
@@ -267,10 +308,30 @@ cart.onclick = () => {
     verifyItemIntoCart()
 }
 
-finalizeButton.onclick = () => {
-    purchaseNone()
+function continueBuying() {
     mainFlex()
-    clearListProducts()
+    modalNone()
+    popUpBuyNone()
+    purchaseNone()
 }
 
+function finalizeBuying() {
+    mainFlex()
+    modalNone()
+    popUpBuyNone()
+    purchaseNone()
+    clearListProducts()
+    verifyItemIntoCart()
+    verifyAmount()
+}
+
+function finalizeBuyingButton() {
+    modalFlex()
+    popUpBuyFlex()
+}
+
+continueBuy.onclick = () => continueBuying()
+finalizeBuy.onclick = () => finalizeBuying()
+cart.onclick = () => openCart()
+finalizeButton.onclick = () => finalizeBuyingButton()
 main.addEventListener('click', ({ target }) => getElementReference(target))
