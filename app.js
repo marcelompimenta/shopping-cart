@@ -1,5 +1,5 @@
-import { productsBelowTen } from "./belowten.js"
-import { productsOverTen } from "./overten.js"
+import { productsBelowTen } from "./apis/belowten.js"
+import { productsOverTen } from "./apis/overten.js"
 
 const productsBelow = productsBelowTen['items']
 const productsOver = productsOverTen['items']
